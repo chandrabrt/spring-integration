@@ -7,11 +7,13 @@ import lombok.Data;
  * @since 2020-08-16
  */
 @Data
-public class Student {
+public class Address {
 
-    private String id;
+    private String province;
 
-    private String name;
+    private String district;
 
-    private String school;
+    private String muncipality;
+
+
 }

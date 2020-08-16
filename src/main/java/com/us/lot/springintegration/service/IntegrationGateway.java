@@ -16,10 +16,7 @@ public interface IntegrationGateway {
      * @MessagingGateway: it is an interface that serves as a proxy abstraction over the messaging structure
      * @Gateway: is usually annotated on the method signature inside the interface
      */
-
-    @Gateway(requestChannel = "integration.gateway.channel")
-    String sendMessage(String message);
-
-    @Gateway(requestChannel = "integration.student.gateway.channel")
-    String processStudentDetails(Student student);
+    //generic type gateway
+    @Gateway(requestChannel = "router.channel")
+    <T> void process(T Object);
 }

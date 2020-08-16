@@ -1,10 +1,9 @@
 package com.us.lot.springintegration.controller;
 
+import com.us.lot.springintegration.resource.Address;
 import com.us.lot.springintegration.resource.Student;
 import com.us.lot.springintegration.service.IntegrationGateway;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +24,14 @@ public class IntegrationController {
         this.integrationGateway = integrationGateway;
     }
 
-    @GetMapping(value = "/{name}")
-    public String getMessageFormatIntegrationService(@PathVariable String name){
-        return integrationGateway.sendMessage(name);
+    @PostMapping("/student")
+    public void processStudentDetails(@RequestBody Student student){
+        integrationGateway.process(student);
     }
 
-    @PostMapping
-    public String processStudentDetails(@RequestBody Student student){
-        return integrationGateway.processStudentDetails(student);
+    @PostMapping("/address")
+    public void processAddressDetails(@RequestBody Address address){
+        integrationGateway.process(address);
     }
 
 }
