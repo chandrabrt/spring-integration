@@ -1,6 +1,5 @@
 package com.us.lot.springintegration.service;
 
-import com.us.lot.springintegration.resource.Student;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,6 @@ public interface IntegrationGateway {
      * @Gateway: is usually annotated on the method signature inside the interface
      */
     //generic type gateway
-    @Gateway(requestChannel = "router.channel")
-    <T> void process(T Object);
+    @Gateway(requestChannel = "inputChannel")
+    <S> void sendMessage(S request);
 }
