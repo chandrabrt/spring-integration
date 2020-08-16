@@ -1,14 +1,13 @@
 package com.us.lot.springintegration.config;
 
-import com.us.lot.springintegration.resource.Address;
 import com.us.lot.springintegration.resource.Student;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.annotation.Filter;
 import org.springframework.integration.annotation.IntegrationComponentScan;
-import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.config.EnableIntegration;
-import org.springframework.integration.router.PayloadTypeRouter;
+import org.springframework.integration.filter.MessageFilter;
 import org.springframework.messaging.MessageChannel;
 
 /**
@@ -32,17 +31,16 @@ public class IntegrationConfig {
         return new DirectChannel();
     }
 
-    @Bean
-    public MessageChannel replyChannel(){
-        return new DirectChannel();
-    }
+//    @Bean
+//    public MessageChannel replyChannel(){
+//        return new DirectChannel();
+//    }
 
-    @ServiceActivator(inputChannel = "router.channel")
+    @Filter(inputChannel = "router.channel")
     @Bean
-    public PayloadTypeRouter router(){
-        PayloadTypeRouter router = new PayloadTypeRouter();
-        router.setChannelMapping(Student.class.getName(), "student.channel");
-        router.setChannelMapping(Address.class.getName(), "address.channel");
-        return router;
+    public MessageFilter filter(){
+        MessageFilter filter = new MessageFilter(message -> message.getPayload() instanceof Student);
+        filter.setOutputChannelName("student.channel");
+        return filter;
     }
 }
