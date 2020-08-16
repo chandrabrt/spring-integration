@@ -1,5 +1,6 @@
 package com.us.lot.springintegration.service;
 
+import com.us.lot.springintegration.resource.Student;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,7 @@ public interface IntegrationGateway {
 
     @Gateway(requestChannel = "integration.gateway.channel")
     String sendMessage(String message);
+
+    @Gateway(requestChannel = "integration.student.gateway.channel")
+    String processStudentDetails(Student student);
 }

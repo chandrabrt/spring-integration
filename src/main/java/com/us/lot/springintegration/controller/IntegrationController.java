@@ -1,9 +1,12 @@
 package com.us.lot.springintegration.controller;
 
+import com.us.lot.springintegration.resource.Student;
 import com.us.lot.springintegration.service.IntegrationGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +28,11 @@ public class IntegrationController {
     @GetMapping(value = "/{name}")
     public String getMessageFormatIntegrationService(@PathVariable String name){
         return integrationGateway.sendMessage(name);
+    }
+
+    @PostMapping
+    public String processStudentDetails(@RequestBody Student student){
+        return integrationGateway.processStudentDetails(student);
     }
 
 }
