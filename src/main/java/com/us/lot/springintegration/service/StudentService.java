@@ -1,13 +1,8 @@
 package com.us.lot.springintegration.service;
 
-import com.us.lot.springintegration.resource.Student;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 /**
  * @author chandra khadka
