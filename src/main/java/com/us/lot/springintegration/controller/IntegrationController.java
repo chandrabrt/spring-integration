@@ -1,6 +1,5 @@
 package com.us.lot.springintegration.controller;
 
-import com.us.lot.springintegration.resource.Address;
 import com.us.lot.springintegration.resource.Student;
 import com.us.lot.springintegration.service.IntegrationGateway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +26,6 @@ public class IntegrationController {
     @PostMapping("/student")
     public void processStudentDetails(@RequestBody Student student){
         integrationGateway.process(student);
-    }
-
-    @PostMapping("/address")
-    public void processAddressDetails(@RequestBody Address address){
-        integrationGateway.process(address);
     }
 
 }
